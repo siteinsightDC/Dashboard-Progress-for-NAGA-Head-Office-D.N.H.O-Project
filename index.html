@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Project Dashboard</title>
+<style>
+:root{--bg:#0e1424;--card:#1c2336;--mut:#9aa4bd;--red:#ef4444;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:#fff;font-family:Segoe UI,Roboto,Arial,sans-serif}
+body{padding:12px;padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.g{display:grid;gap:10px;grid-template-columns:repeat(12,1fr);max-width:1300px;margin:auto}
+.c{background:var(--card);border-radius:8px;overflow:hidden;min-width:0}.c h3{margin:0;background:#000;text-align:center;font-size:15px;padding:6px 8px;font-weight:600}
+.b{padding:10px}
+.title{grid-column:span 12;background:var(--card);border-radius:30px;text-align:center;padding:14px;font:700 24px Georgia,serif}
+.title{display:flex;align-items:center;gap:16px;justify-content:center;padding:10px 20px}.title img{height:56px;width:auto;background:#fff;border-radius:10px;padding:4px 8px}.title div{text-align:center}.title small{display:block;font:12px Segoe UI,sans-serif;color:var(--mut);margin-top:2px}
+.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:span 6}.s8{grid-column:span 8}.s12{grid-column:span 12}
+.date{display:flex;align-items:center;justify-content:center;font:700 20px Segoe UI;border:3px solid #2a3350;border-radius:24px;background:#0a0f1c}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}.t{cursor:pointer;opacity:.45;border-color:var(--k)!important}.t.on{opacity:1;background:#1a2340}.t{background:#0a0f1c;border:2px solid #3a4260;border-radius:6px;padding:10px;text-align:center;font-size:12px}.t b{display:block;font-size:26px;margin-top:4px}
+svg text{fill:#fff;font-family:Segoe UI,Roboto,Arial,sans-serif}.row{display:grid;grid-template-columns:150px 1fr 56px;gap:8px;align-items:center;font-size:12px;margin:6px 0}
+.bar{height:14px;background:#0a0f1c;border-radius:3px;position:relative}.bar.tall{height:28px}.ctr{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-shadow:0 0 3px #000,0 0 3px #000}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--red)}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--mut);padding:6px 10px;flex-wrap:wrap}.leg span:before{content:"";display:inline-block;width:10px;height:10px;margin-right:5px;border-radius:2px;background:var(--k)}
+ul{margin:0;padding:10px 10px 10px 28px;font-size:13px;line-height:1.7}.stk{display:flex;height:22px;border-radius:3px;overflow:hidden;background:#0a0f1c}.stk i{display:block;height:100%}
+.tabs{display:flex;gap:6px;padding:8px 10px 0;flex-wrap:wrap}.tabs button{background:#0a0f1c;color:#fff;border:1px solid #3a4260;border-radius:14px;padding:4px 12px;cursor:pointer;font-size:12px}.tabs button.on{background:#2b2bb0;border-color:#2b2bb0}
+@media(max-width:860px){.title{flex-direction:column}}.iss{max-height:340px;overflow:auto;padding:6px 10px}.is{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:start;padding:7px 0;border-bottom:1px solid #2a3350;font-size:13px}.is b{color:var(--mut)}.is small{display:block;color:var(--mut);font-size:11px;margin-top:2px}.is em{font-style:normal;font-size:11px;background:#0a0f1c;border:1px solid #3a4260;border-radius:10px;padding:2px 8px;white-space:nowrap}.st{font-size:10px;border-radius:8px;padding:1px 7px;margin-left:4px;color:#0a0f1c;font-weight:600}.st.o{background:#e8892b}.st.c{background:#3ddc3d}.bar.tall i{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-style:normal}.row.pick{cursor:pointer}.row.pick.off{opacity:.4}.c.fx{display:flex;flex-direction:column}.c.fx>.b{flex:1;display:flex;flex-direction:column}.fg{display:flex;flex:1;align-items:center;gap:4px}.fg svg{flex:1;min-width:0;height:auto;max-height:230px}.sb{display:flex;flex-direction:column;gap:8px;justify-content:space-between}.sb .row{flex:1;margin:0;min-height:30px;align-items:stretch;grid-template-columns:110px 1fr 56px}.sb .row>span,.sb .row>b{display:flex;align-items:center}.sb .stk{height:100%;min-height:26px}.stk i{display:flex;align-items:center;justify-content:center;font-size:12px;font-style:normal;color:#fff}.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:10px}.ph img{width:100%;height:110px;object-fit:cover;border-radius:6px;cursor:pointer;display:block}#lb{position:fixed;inset:0;background:rgba(5,8,16,.93);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}#lb[hidden]{display:none}#lb img{max-width:96vw;max-height:78vh;border-radius:6px}#lb p{margin:0;font-size:14px}.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+@media(max-width:860px){.s3,.s4,.s6,.s8{grid-column:span 12}.title{font-size:18px}.row{grid-template-columns:100px 1fr 40px}.gl{grid-template-columns:repeat(2,1fr)}.date{padding:14px}}
+</style></head><body><div class="g">
+<div class="title"><img id="logo" alt="" hidden><div><span id="ttl"></span><small id="sub"></small></div></div>
+<div class="c s3"><h3 data-l="submissions">Total of Submissions</h3><div class="b"><svg id="gSub" viewBox="0 -14 220 144"></svg></div></div>
+<div class="c s3"><h3 data-l="overall">Overall Progress</h3><div class="b"><svg id="gOv" viewBox="0 -14 220 144"></svg></div></div>
+<div class="c s3"><h3 data-l="weekly">Weekly Progress</h3><div class="b" id="wk"></div></div>
+<div class="c s3 date" id="dt"></div>
+<div class="c s12"><h3 data-l="logs">Submittal logs</h3><div class="b gl" id="gl"></div></div>
+<div class="c s4"><h3 data-l="statusFilter">Status (filter)</h3><div class="tabs"><button id="all">All</button><button id="none">Clear</button></div><div class="tiles" id="tiles"></div></div>
+<div class="c s8 fx"><h3 data-l="statusByLog">Status by log</h3><div class="b sb" id="stk"></div><div class="leg" id="lg"></div></div>
+<div class="c s6 fx"><h3 data-l="floors">Progress by floor</h3><div class="b" id="fl"></div><div class="leg"><span style="--k:#2b2bb0">Actual</span><span style="--k:#ef4444">Planned to date</span></div></div>
+<div class="c s6"><h3 data-l="activities">Activity progress</h3><div class="tabs" id="tb"></div><div class="b" id="act"></div></div>
+<div class="c s6" id="isc"><h3 data-l="issuesChart">Issues by action taker</h3><div class="tabs" id="ifl"></div><div class="b" id="ichart"></div></div>
+<div class="c s6" id="isl"><h3 data-l="issuesLog">Issues log</h3><div class="iss" id="ilist"></div></div>
+<div class="c s6"><h3 data-l="lookahead">One-week lookahead plan</h3><ul id="la"></ul></div>
+<div class="c s6"><h3 data-l="transmittals">Weekly progress transmittals</h3><div class="b" id="trn"></div></div>
+<div class="c s12" id="phc"><h3 data-l="photos">Site photos</h3><div class="tabs" id="phf"></div><div class="ph" id="phg"></div></div>
+<div class="c s12" id="err" hidden style="padding:14px;color:#ffb4b4"></div>
+</div><div id="lb" hidden><img alt=""><p></p><div class="tabs"><button id="lbp">Previous</button><button id="lbn">Next</button><button id="lbx">Close</button></div></div><script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+const fetchJson=f=>fetch(f+'?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(f+' returned '+r.status);return r.json()});
+let C,D,sel=new Set(),cur='',TODAY;
+function gauge(id,v,max,col,lab,mark,opt){const o=opt||{},R=80,cx=110,cy=110,W=o.sw||30,suf=o.suf||'';
+const arc=f=>{const a=Math.PI*f;return `M${cx-R} ${cy}A${R} ${R} 0 0 1 ${cx-R*Math.cos(a)} ${cy-R*Math.sin(a)}`};
+let s=`<path d="${arc(.999)}" fill="none" stroke="#f1f1f1" stroke-width="${W}"/>`+(v>0?`<path d="${arc(Math.min(v/max,.999))}" fill="none" stroke="${col}" stroke-width="${W}"/>`:'');
+if(mark!=null){const a=Math.PI*mark/100,c=Math.cos(a),n=Math.sin(a);s+=`<line x1="${cx-(R-W/2-3)*c}" y1="${cy-(R-W/2-3)*n}" x2="${cx-(R+W/2+3)*c}" y2="${cy-(R+W/2+3)*n}" stroke="#ef4444" stroke-width="2"/>`;const lx=cx-(R+W/2+12)*c,ly=cy-(R+W/2+12)*n;s+=`<text x="${lx}" y="${ly}" text-anchor="${lx>190?'end':lx<30?'start':'middle'}" font-size="13" font-weight="600" style="fill:#e05252">${mark.toFixed(2)}%</text>`}
+s+=`<text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="${o.fs||30}" font-weight="700">${esc(lab)}</text><text x="${cx-R}" y="126" text-anchor="middle" font-size="12">0${suf}</text><text x="${cx+R}" y="126" text-anchor="middle" font-size="12">${max}${suf}</text>`;$(id).innerHTML=s}
+let PLAN;const plan=t=>{const s=new Date(t.start+'T08:00'),f=new Date(t.finish+'T17:00');return Math.max(0,Math.min(1,(PLAN-s)/(f-s)))*100};
+const lt=l=>Object.values(l.counts).reduce((a,b)=>a+b,0);
+const cnt=(l,k)=>l.counts[k]||0;
+function renderStatus(){const S=C.statuses;
+$('tiles').innerHTML=S.map(x=>`<div class="t ${sel.has(x.key)?'on':''}" data-k="${esc(x.key)}" style="--k:${x.color}">${esc(x.label)}<b>${D.logs.reduce((a,l)=>a+cnt(l,x.key),0)}</b></div>`).join('');
+$('tiles').querySelectorAll('.t').forEach(t=>t.onclick=()=>{const k=t.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);renderStatus()});
+$('stk').innerHTML=D.logs.map(l=>{const T=lt(l),on=S.filter(x=>sel.has(x.key));return `<div class="row"><span>${esc(l.name)}</span><div class="stk">${on.map(x=>`<i title="${esc(x.label)}: ${cnt(l,x.key)}" style="width:${T?cnt(l,x.key)/T*100:0}%;background:${x.color}">${T&&cnt(l,x.key)/T>=.06?cnt(l,x.key):''}</i>`).join('')}</div><b>${on.length==S.length?T:on.reduce((a,x)=>a+cnt(l,x.key),0)+'/'+T}</b></div>`}).join('');
+$('lg').innerHTML=S.map(x=>`<span style="--k:${x.color}">${esc(x.key)}</span>`).join('')}
+function renderActs(){const F=C.floors;$('tb').innerHTML=F.map(f=>`<button class="${f.key==cur?'on':''}" data-f="${esc(f.key)}">${esc(f.label)}</button>`).join('');
+$('tb').querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.f;renderActs()});
+$('act').innerHTML=D.tasks.filter(t=>t.floor==cur).map(t=>`<div class="row"><span>${esc(t.name)}</span><div class="bar"><i style="width:${t.percent}%;background:#e8892b"></i><u style="left:${plan(t)}%"></u></div><b>${t.percent}%</b></div>`).join('')}
+let phSel='all',lbL=[],lbi=0;
+function lbShow(){const x=lbL[lbi];$('lb').querySelector('img').src=x.src;$('lb').querySelector('p').textContent=x.group+' ('+(lbi+1)+'/'+lbL.length+')'}
+function renderPhotos(){const P=D.photos||[];$('phc').hidden=!P.length;if(!P.length)return;
+const gs=[...new Set(P.map(x=>x.group))];
+$('phf').innerHTML=[['all','All',P.length],...gs.map(g=>[g,g,P.filter(x=>x.group==g).length])].map(x=>`<button class="${phSel==x[0]?'on':''}" data-g="${esc(x[0])}">${esc(x[1])} ${x[2]}</button>`).join('');
+$('phf').querySelectorAll('button').forEach(b=>b.onclick=()=>{phSel=b.dataset.g;renderPhotos()});
+lbL=P.filter(x=>phSel=='all'||x.group==phSel);
+$('phg').innerHTML=lbL.map((x,i)=>`<img src="${x.src}" alt="${esc(x.group)}" title="${esc(x.group)}" data-i="${i}" loading="lazy">`).join('');
+$('phg').querySelectorAll('img').forEach(im=>im.onclick=()=>{lbi=+im.dataset.i;lbShow();$('lb').hidden=false})}
+$('lbx').onclick=()=>$('lb').hidden=true;$('lbp').onclick=()=>{lbi=(lbi-1+lbL.length)%lbL.length;lbShow()};$('lbn').onclick=()=>{lbi=(lbi+1)%lbL.length;lbShow()};
+$('lb').onclick=e=>{if(e.target.id=='lb')$('lb').hidden=true};
+document.addEventListener('keydown',e=>{if($('lb').hidden)return;if(e.key=='Escape')$('lb').hidden=true;if(e.key=='ArrowRight')$('lbn').click();if(e.key=='ArrowLeft')$('lbp').click()});
+let ownerSel=null,stSel='all';
+function renderIssues(){const I=D.issues||[];$('isc').hidden=$('isl').hidden=!I.length;if(!I.length)return;
+const isC=x=>String(x.status||'Open').toLowerCase()=='closed',nO=I.filter(x=>!isC(x)).length,nC=I.length-nO;
+$('ifl').innerHTML=[['all','All',I.length],['ongoing','Ongoing',nO],['closed','Closed',nC]].map(x=>`<button class="${stSel==x[0]?'on':''}" data-s="${x[0]}">${x[1]} ${x[2]}</button>`).join('');
+$('ifl').querySelectorAll('button').forEach(b=>b.onclick=()=>{stSel=b.dataset.s;renderIssues()});
+const F=I.filter(x=>stSel=='all'||(stSel=='closed')==isC(x));
+const owners=[...new Set(I.map(x=>x.owner))],cn=o=>[F.filter(x=>x.owner==o&&!isC(x)).length,F.filter(x=>x.owner==o&&isC(x)).length];
+const mx=Math.max(1,...owners.map(o=>cn(o)[0]+cn(o)[1]));
+const dd=D.issuesDate?new Date(D.issuesDate+'T12:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'';
+$('ichart').innerHTML=owners.sort((a,b)=>cn(b)[0]+cn(b)[1]-cn(a)[0]-cn(a)[1]).map(o=>{const [p,q]=cn(o);return `<div class="row pick ${ownerSel&&ownerSel!=o?'off':''}" data-o="${esc(o)}" style="grid-template-columns:130px 1fr 30px"><span>${esc(o)}</span><div class="bar tall"><i style="width:${p/mx*100}%;background:#e8892b">${p||''}</i><i style="left:${p/mx*100}%;width:${q/mx*100}%;background:#3ddc3d;border-radius:0 3px 3px 0;color:#0a0f1c">${q||''}</i></div><b>${p+q}</b></div>`}).join('')+`<div class="leg" style="padding:6px 0 0"><span style="--k:#e8892b">Ongoing</span><span style="--k:#3ddc3d">Closed</span></div><div style="font-size:12px;color:var(--mut);margin-top:6px">Showing <b style="color:#fff">${F.length}</b> of ${I.length} issues${dd?' · updated '+dd:''}. Click a bar to filter the list.</div>`;
+$('ichart').querySelectorAll('.pick').forEach(r=>r.onclick=()=>{ownerSel=ownerSel==r.dataset.o?null:r.dataset.o;renderIssues()});
+$('ilist').innerHTML=F.filter(x=>!ownerSel||x.owner==ownerSel).map(x=>`<div class="is" title="${esc(x.description||'')}"><b>${esc(x.no)}</b><div>${esc(x.item)} <span class="st ${isC(x)?'c':'o'}">${isC(x)?'Closed':'Ongoing'}</span><small>Action: ${esc(x.required||'')}</small>${x.impact?`<small style="color:#f3b46a">Impact: ${esc(x.impact)}</small>`:''}</div><em>${esc(x.owner)}</em></div>`).join('')}
+function render(){
+$('ttl').textContent=C.title;$('sub').textContent=C.subtitle||'';document.title=C.title;
+if(C.logo){$('logo').src=C.logo;$('logo').alt=C.logoAlt||'';$('logo').hidden=false}
+document.querySelectorAll('[data-l]').forEach(e=>{if(C.labels&&C.labels[e.dataset.l])e.textContent=C.labels[e.dataset.l]});
+TODAY=new Date(D.reportDate+'T12:00');PLAN=new Date(D.planAsOf||(D.reportDate+'T17:00'));$('dt').textContent=TODAY.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+const pAll=avg(D.tasks.map(plan)),act=D.overall.actual,prev=D.overall.previous;
+const tot=D.logs.reduce((a,l)=>a+lt(l),0)+(D.transmittals||[]).length;
+gauge('gSub',tot,D.submissionsTarget||100,'#2b2bb0',tot);
+gauge('gOv',act,100,'#2b2bb0',(+act.toFixed(2))+'%',pAll,{sw:38,fs:34,suf:'%'});
+const two=(a,b,c,d,col)=>`<table style="width:100%;text-align:center;font-size:13px"><tr><td style="color:var(--mut)">${a}</td><td style="color:var(--mut)">${c}</td></tr><tr><td style="font-size:26px;font-weight:700">${b}</td><td style="font-size:26px;font-weight:700;color:${col}">${d}</td></tr></table>`;
+$('wk').innerHTML=prev!=null?two('Progress prev.',prev+'%','Weekly progress',(act-prev).toFixed(2)+'%','#3ddc3d'):two('Actual',act+'%','Planned to date',pAll.toFixed(1)+'%','#ef4444')+`<div style="font-size:12px;color:var(--mut);margin-top:8px;text-align:center">Variance ${(act-pAll).toFixed(1)} pts · plan as of ${PLAN.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div>`;
+const gid=(l,i)=>'g_'+i;
+$('gl').innerHTML=D.logs.map((l,i)=>`<div><div style="text-align:center;font-size:13px;font-weight:600">${esc(l.name)}</div><svg viewBox="0 0 220 130" id="${gid(l,i)}"></svg></div>`).join('');
+D.logs.forEach((l,i)=>{const r=lt(l)-cnt(l,C.waitingKey||'W');gauge(gid(l,i),r,lt(l),'#e8892b',r)});
+if(!sel.size&&!render.done)sel=new Set(C.statuses.map(x=>x.key));renderStatus();
+$('all').onclick=()=>{sel=new Set(C.statuses.map(x=>x.key));renderStatus()};$('none').onclick=()=>{sel=new Set();renderStatus()};
+$('fl').innerHTML='<div class="fg">'+C.floors.map(f=>{const a=D.tasks.filter(t=>t.floor==f.key),A=(D.floorProgress&&D.floorProgress[f.key]!=null)?D.floorProgress[f.key]:avg(a.map(t=>t.percent)),P=avg(a.map(plan));
+const R=40,cx=60,cy=58,W=14,arc=x=>{const q=Math.PI*x;return `M${cx-R} ${cy}A${R} ${R} 0 0 1 ${cx-R*Math.cos(q)} ${cy-R*Math.sin(q)}`};
+const q=Math.PI*P/100,c=Math.cos(q),n=Math.sin(q),lx=cx-(R+W/2+9)*c,ly=cy-(R+W/2+9)*n;
+return `<svg viewBox="0 -4 120 82"><path d="${arc(.999)}" fill="none" stroke="#f1f1f1" stroke-width="${W}"/>${A>0?`<path d="${arc(Math.min(A/100,.999))}" fill="none" stroke="#2b2bb0" stroke-width="${W}"/>`:''}<line x1="${cx-(R-W/2-2)*c}" y1="${cy-(R-W/2-2)*n}" x2="${cx-(R+W/2+2)*c}" y2="${cy-(R+W/2+2)*n}" stroke="#ef4444" stroke-width="1.5"/><text x="${lx}" y="${ly}" text-anchor="${lx>100?'end':lx<20?'start':'middle'}" font-size="8" font-weight="600" style="fill:#e05252">${P.toFixed(1)}%</text><text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="14" font-weight="700">${A.toFixed(1)}%</text><text x="${cx}" y="76" text-anchor="middle" font-size="10" style="fill:#9aa4bd">${esc(f.label)}</text></svg>`}).join('')+'</div>';
+if(!cur)cur=C.floors[0].key;renderActs();
+$('la').innerHTML=(D.lookahead||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+const TR=D.transmittals||[];
+$('trn').innerHTML=TR.map(x=>`<div class="row" style="grid-template-columns:200px 1fr 60px"><span>Weekly Progress ${esc(x.no)} <span style="color:var(--mut)">(${esc(x.period)})</span></span><div class="bar"><i style="width:100%;background:#3ddc3d"></i></div><b style="font-size:11px">${esc(x.sent)}</b></div>`).join('')+`<div style="font-size:13px;margin-top:8px">Total: <b>${TR.length}</b> weekly progress reports transmitted${TR.length?' (latest: '+esc(TR[TR.length-1].no)+')':''}. Sent date shown.</div>`;
+renderIssues();renderPhotos();render.done=true}
+Promise.all([fetchJson('config.json'),fetchJson('data.json')]).then(([c,d])=>{C=c;D=d;render()}).catch(e=>{const x=$('err');x.hidden=false;x.textContent='Could not load config.json / data.json ('+e.message+'). Open this page from GitHub Pages or a local web server, not by double-clicking the file.'});
+</script></body></html>
